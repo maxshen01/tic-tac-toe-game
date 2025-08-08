@@ -29,6 +29,10 @@ function addShape(e) {
 
     if (e.target.textContent === "") {
         noOfClicks++
+        
+        //change hover state for x and o 
+        //hoverState()
+
         let squareNumber = Number(e.target.id)
 
         if (noOfClicks % 2 === 0) {
@@ -46,6 +50,18 @@ function addShape(e) {
     }
 
 }
+
+//hover function, not working rn
+// function hoverState() {
+//     squares.forEach(square => {square.classList.remove('player1')})
+//     squares.forEach(square => {square.classList.remove('player2')})
+
+//     if (noOfClicks % 2 === 0) {
+//         squares.forEach(square => {square.classList.add('player1')})
+//     } else {
+//         squares.forEach(square => {square.classList.add('player2')})
+//     }
+// }
 
 function checkWin(player) {
 

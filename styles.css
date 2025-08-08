@@ -48,6 +48,14 @@ header section p {
     background-color: aliceblue;
 }
 
+/* div.player1:hover {
+    background-color: greenyellow;
+}
+
+div.player2:hover {
+    background-color: red;
+} */
+
 .createNewGame {
     display: flex;
     flex-direction: column;
