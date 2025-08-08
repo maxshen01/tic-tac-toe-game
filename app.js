@@ -1,5 +1,6 @@
 const squares = document.querySelectorAll(".board div")
 const newGameButton = document.querySelector("#newGame")
+const textBox = document.querySelector('#textBox')
 
 squares.forEach(square => {square.addEventListener('click', addShape)})
 newGameButton.addEventListener('click', restartGame)
@@ -35,7 +36,7 @@ function addShape(e) {
         }
 
     } else {
-        console.log('choose an empty square');
+        textBox.textContent = 'Select an Empty Square'
     }
 
 }
@@ -49,19 +50,24 @@ function checkWin(player) {
         let square3 = boardState[winningCombinations[i][2]]
         
         if (square1 === player && square2 === player && square3 == player) {
-            console.log('player wins');
-
-            freezeGame()
+            
+            if (noOfClicks % 2 === 0) {
+                textBox.textContent = 'Player 2 wins!'
+            } else {
+                textBox.textContent = 'Player 1 wins!'
+            }
+            freezeGame(winningCombinations[i])
 
             return 
         } 
     }
-
-    console.log('no one is winning atm');
-
 }
 
-function freezeGame() {
+function freezeGame(winningArr) {
+    squares[winningArr[0]].classList.add('highlight')
+    squares[winningArr[1]].classList.add('highlight')
+    squares[winningArr[2]].classList.add('highlight')
+
     squares.forEach(square => {square.removeEventListener('click', addShape)})
 }
 
@@ -73,6 +79,8 @@ function restartGame() {
         squares[i].textContent = ""
     }
 
+    squares.forEach(square => {square.classList.remove('highlight')})
     squares.forEach(square => {square.addEventListener('click', addShape)})
+    textBox.textContent = 'Lets play a game'
 }
 

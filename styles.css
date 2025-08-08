@@ -4,6 +4,23 @@ main {
     align-items: center;
 }
 
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header section p {
+    margin: 20px;
+}
+
 .board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -11,6 +28,10 @@ main {
     width: 375px;
     height: 375px;
     border: 2px solid black;
+}
+
+.highlight {
+    background-color: greenyellow;
 }
 
 .board div {
