@@ -1,6 +1,7 @@
 const squares = document.querySelectorAll(".board div")
 const newGameButton = document.querySelector("#newGame")
 const textBox = document.querySelector('#textBox')
+const scoreTally = document.querySelector('.scoreTally')
 
 squares.forEach(square => {square.addEventListener('click', addShape)})
 newGameButton.addEventListener('click', restartGame)
@@ -18,6 +19,11 @@ const winningCombinations = [
 ]
 
 let boardState = [0,0,0,0,0,0,0,0,0]
+let score = {
+    "player1": 0,
+    "player2": 0,
+    "draws": 0
+}
 
 function addShape(e) {
 
@@ -53,13 +59,28 @@ function checkWin(player) {
             
             if (noOfClicks % 2 === 0) {
                 textBox.textContent = 'Player 2 wins!'
+                score.player2++
+
+                scoreTally.children[1].textContent = `Player 2 Wins: ${score.player2}`
             } else {
                 textBox.textContent = 'Player 1 wins!'
+
+                score.player1++
+
+                scoreTally.children[0].textContent = `Player 1 Wins: ${score.player1}`
             }
             freezeGame(winningCombinations[i])
 
             return 
         } 
+    }
+
+    if (noOfClicks === 9) {
+        score.draws++
+        scoreTally.children[2].textContent = `Draws: ${score.draws}`
+        textBox.textContent = 'Its a draw!'
+
+        squares.forEach(square => {square.removeEventListener('click', addShape)})
     }
 }
 
